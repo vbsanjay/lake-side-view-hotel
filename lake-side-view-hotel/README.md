@@ -1,1 +1,0 @@
-# lake-side-view-hotel
