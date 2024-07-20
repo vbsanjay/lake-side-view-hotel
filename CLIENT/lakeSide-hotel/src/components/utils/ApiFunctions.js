@@ -1,0 +1,41 @@
+/* this file contains functions that intracts with the backend server*/
+
+/* This creates an axios instance with a base URL for all requests. */
+import axios from "axios"
+
+export const api = axios.create({
+    baseURL: "http://localhost:9192"
+})
+
+/* 
+- Creates a FormData object and appends the room details
+- Sends a POST request to "/rooms/add/new-room" with the form data
+- Returns true if the response status is 201 (Created), false otherwise 
+*/
+export async function addRoom(photo, roomType, roomPrice){
+    const formData = new FormData()
+    formData.append("photo", photo)
+    formData.append("roomType", roomType)
+    formData.append("roomPrice", roomPrice)
+
+    const response = await api.post("/rooms/add/new-room", formData)
+    if(response.status === 201){
+        return true
+    }else{
+        return false
+    }
+}
+
+/* 
+- Sends a GET request to "/rooms/room/types"
+- Returns the response data if successful
+- Throws an error if there's a problem fetching room types
+*/
+export async function getRoomTypes(){
+    try{
+        const response = await api.get("/rooms/room/types")
+        return response.data
+    }catch(error){
+        throw new Error("Error fetching room types")
+    }
+}
