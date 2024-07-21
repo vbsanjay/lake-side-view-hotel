@@ -14,4 +14,10 @@ public interface IRoomService {
                     BigDecimal roomPrice) throws SQLException, IOException;
 
     List<String> getAllRoomTypes();
+
+    List<Room> getAllRooms();
+
+    byte[] getRoomPhotoByRoomID(Long roomId) throws SQLException;
+
+    void deleteRoom(Long roomId);
 }
