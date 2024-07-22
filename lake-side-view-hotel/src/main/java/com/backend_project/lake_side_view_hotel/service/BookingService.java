@@ -41,9 +41,9 @@ public class BookingService implements IBookingService{
             room.addBooking(bookingRequest);
             bookingRepository.save(bookingRequest);
         }else{
-            throw  new InvalidBookingRequestException("Sorry ! This room is not available for the selected date")
+            throw  new InvalidBookingRequestException("Sorry ! This room is not available for the selected date");
         }
-        return null;
+        return bookingRequest.getBookingConfirmationCode();
     }
 
     @Override
